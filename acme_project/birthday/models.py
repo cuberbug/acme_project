@@ -33,7 +33,8 @@ class Birthday(models.Model):
         max_length=20,
     )
     birthday = models.DateField(
-        'Дата рождения', validators=(real_age,)
+        verbose_name='Дата рождения',
+        validators=(real_age,),
     )
     image = models.ImageField(
         verbose_name='Фото',
@@ -63,7 +64,7 @@ class Birthday(models.Model):
             ),
         )
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         # С помощью функции reverse() возвращаем URL объекта.
         return reverse('birthday:detail', kwargs={'pk': self.pk})
 
