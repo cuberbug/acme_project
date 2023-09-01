@@ -14,9 +14,6 @@ from .utils import calculate_birthday_countdown
 
 class BirthdayListView(ListView):
     model = Birthday
-    # По умолчанию этот класс
-    # выполняет запрос queryset = Birthday.objects.all(),
-    # но мы его переопределим:
     queryset = Birthday.objects.prefetch_related(
         'tags'
     ).select_related('author')
@@ -25,6 +22,7 @@ class BirthdayListView(ListView):
 
 
 class BirthdayCreateView(LoginRequiredMixin, CreateView):
+    """Создать."""
     model = Birthday
     form_class = BirthdayForm
 
@@ -36,6 +34,7 @@ class BirthdayCreateView(LoginRequiredMixin, CreateView):
 
 
 class BirthdayUpdateView(LoginRequiredMixin, UpdateView):
+    """Редактировать."""
     model = Birthday
     form_class = BirthdayForm
 
